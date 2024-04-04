@@ -18,6 +18,10 @@ import Image from "next/image";
 
 const Navbar = () => {
     const [nav, setNav] = useState(false);
+    /*
+    const [color, setColor] = useState('transparent');
+    const [textColor, setTextColor] = useState('white'); */
+
 //replace them with actual links later
     const links = [  //modify this as needed, we may not need them all to begin with, can be replaed with other information if needed
         {
@@ -28,22 +32,22 @@ const Navbar = () => {
         {
             id: 2,
             name: "About",
-            link: "/About"
+            link: "/#About"   //since we want to navigate to our ID aspect
         },
         {
             id: 3,
             name: "Categories/Deals",
-            link: "/"
+            link: "/#Deals"  //this will be another section wihin the landing page that will be dropped down to
         },
         {
             id: 4,
             name: "Top Products",
-            link: "/"
+            link: "/#TopProducts"
         },
         {
             id: 5,
             name: "Register/Login",
-            link: "/"
+            link: "/"  //this should display a seperate popup screen for users to register/signup
         },
     ];
 
