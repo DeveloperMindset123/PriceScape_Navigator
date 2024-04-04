@@ -48,7 +48,7 @@ const Navbar = () => {
     ];
 
     return (
-        <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black nav m-2 ml-4 rounded-xl">
+        <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black nav ">
             <div>
                 <h1 className="text-5xl font-signature ml-2"><a className="link-underline link-underline-black" href="" target="_blank" rel="noreferrer">
                    <Image className="object-fit w-28 h-20 rounded-full bg-transparent" src={LogoTertiary} alt="Logo" />
