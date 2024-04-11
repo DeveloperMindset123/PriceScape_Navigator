@@ -1,14 +1,21 @@
 "use client";
 import React, { Fragment, useState } from 'react';
 import Navbar from '@/components/Navbar';
-import Test from '@/components/test';
 import Image from 'next/image';
 import Slider from '@/components/Slider';
 import FormModal from '@/components/FormModal';
+import SigninModal from '@/components/SigninModal';
+import SignupModal from '@/components/SignupModal';
 
 
 const Landing = () => {
   const [showModal, setShowModal] = useState(false);
+  const [activeModal, setActiveModal] = useState('signin'); // New state for managing active modal
+
+  const toggleModal = () => {
+    setActiveModal(activeModal === 'signin' ? 'signup' : 'signin')
+  }
+
 
   return (
     <>
@@ -46,9 +53,11 @@ const Landing = () => {
       <Slider />
       </div>
       <FormModal isVisibleBool={showModal} onClose={() => setShowModal(false)}>
-      <div className='py-6 px-6 lg:px-8 text-left'>
-        <h3 className='mb-4 text-xl font-medium text-gray-900'>Implementing Sign in Logic</h3>
-      </div>
+      {activeModal === 'signin' ? (
+        <SigninModal onToggleModal={toggleModal} />
+      ) : (
+        <SignupModal onToggleModal={toggleModal} />
+      )}
       </FormModal>
     </Fragment>
     </>
