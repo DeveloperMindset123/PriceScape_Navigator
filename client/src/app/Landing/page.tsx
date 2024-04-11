@@ -10,7 +10,7 @@ import Image from 'next/image';
 
 const Landing = () => {
   return (
-    <div className='relative overflow-hidden rounded-xl shadow-lg mt-2 ml-4 bg-cover bg-no-repeat p-12 text-center'
+    <div className='relative overflow-hidden shadow-lg bg-cover bg-no-repeat p-12 text-center'
       style={{
         "backgroundImage": "url('https://t3.ftcdn.net/jpg/05/35/13/82/360_F_535138292_62ZnI4Hcw37J8Jaeg4E9TzJwUciCwSnp.jpg')",
         "height": "400px",
