@@ -4,6 +4,7 @@ import { signupFieldsConstants } from '@/constants/formFields';
 import FormAction from './FormAction';
 import Input from './Input';
 import { PassThrough } from 'stream';
+import { signup } from '@/app/login/action';
 
 
 const fields=signupFieldsConstants
@@ -18,11 +19,18 @@ const Signup = () => {
     const handleSubmit=(e)=>{
         e.preventDefault();
         createAccount()
+
+        const formData = new FormData(e.currentTarget)
+        //console.log(formData);
+        const getEmail = formData.get('email');
+        const getPassword = formData.get('password')
+        console.log("Email", getEmail);
+        console.log("Password", getPassword)
     }
 
     //TODO: Implement logic for creating new user account using SUpabase
     const createAccount = () => {
-        PassThrough
+
     }
   return (
     <form className='mt-8 space-y-6' onSubmit={handleSubmit}>
@@ -42,7 +50,7 @@ const Signup = () => {
                         placeholder={field.placeholder} customClass={undefined}                        />
                     )
             }
-            <FormAction handleSubmit={handleSubmit} text="Signup" type={undefined} action={undefined} />
+            <FormAction handleSubmit={handleSubmit} text="Signup" type={undefined} action={signup} />
         </div>
     </form>
   )

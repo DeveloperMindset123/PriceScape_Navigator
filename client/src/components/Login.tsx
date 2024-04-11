@@ -6,6 +6,7 @@ import Input from "./Input";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import { PassThrough } from "stream";
+import { login } from "@/app/login/action";
 
 const fields = loginFieldsConstants;
 let fieldsState : any = {};
@@ -48,7 +49,7 @@ export default function Login() {
                 }
             </div>
             <FormExtra />
-            <FormAction handleSubmit={handleSubmit} text="Login" type={undefined} action={undefined} />
+            <FormAction handleSubmit={handleSubmit} text="Login" type={undefined} action={login} />
         </form>
     )
 }
