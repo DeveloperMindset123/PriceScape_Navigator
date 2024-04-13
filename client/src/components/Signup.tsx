@@ -4,7 +4,9 @@ import { signupFieldsConstants } from '@/constants/formFields';
 import FormAction from './FormAction';
 import Input from './Input';
 import { PassThrough } from 'stream';
+import { signup } from '@/app/login/action';
 
+//TOOD: Enable email provider login option in Supabase Project
 
 const fields=signupFieldsConstants
 let fieldsState={}
@@ -15,14 +17,22 @@ const Signup = () => {
 
     const handleChange=(e)=>setSignUpState({...signUpState, [e.target.id]:e.target.value});
 
-    const handleSubmit=(e)=>{
+    async function handleSubmitAndSignup(e:any){
         e.preventDefault();
-        createAccount()
-    }
 
-    //TODO: Implement logic for creating new user account using SUpabase
-    const createAccount = () => {
-        PassThrough
+        const formData = new FormData(e.currentTarget)
+        //console.log(formData);
+        const getEmail = formData.get('email');
+        const getPassword = formData.get('password')
+        console.log("Email", getEmail);
+        console.log("Password", getPassword);
+        const { data, error } = await supabase.auth.signup({
+            email: getEmail,
+            password: getPassword,
+            options: {
+                emailRedirectsTo: "/client/src/app/dashboard",
+            }
+        })
     }
   return (
     <form className='mt-8 space-y-6' onSubmit={handleSubmit}>
@@ -42,7 +52,7 @@ const Signup = () => {
                         placeholder={field.placeholder} customClass={undefined}                        />
                     )
             }
-            <FormAction handleSubmit={handleSubmit} text="Signup" type={undefined} action={undefined} />
+            <FormAction handleSubmit={handleSubmitAndSignup} text="Signup" type={undefined} action={undefined} />
         </div>
     </form>
   )

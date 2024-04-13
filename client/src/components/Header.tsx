@@ -11,7 +11,8 @@ export default function Header({
     onToggleModalType
 }) {
 
-   const [signInOrSignUpModalDisplayed, setsignInOrSignUpModalDisplayed] = useState('signin');
+   //const [signInOrSignUpModalDisplayed, setsignInOrSignUpModalDisplayed] = useState('signin');
+   const [currentLink, setCurrentLink] = useState('#signin')
   return (
     <div className='mb-10 pt-8 rounded-2xl'>
         <div className='flex justify-center'>

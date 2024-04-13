@@ -6,6 +6,7 @@ import Input from "./Input";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import { PassThrough } from "stream";
+import { login } from "@/app/login/action";
 
 const fields = loginFieldsConstants;
 let fieldsState : any = {};
@@ -16,9 +17,19 @@ export default function Login() {
     const handleChange=(e)=>{
         setLoginState({...loginState,[e.target.id]:e.target.value})
     } 
-    const handleSubmit=(e) => {
+    //import { supabase } from "@/app/supabase"; // Import the 'supabase' module
+
+    async function handleSubmitAndAuthentication(e) {
         e.preventDefault();
         handleAuthenticateUser();
+        const formData = new FormData(e.currentTarget)
+        //console.log(formData);
+        const getEmail = formData.get('email');
+        const getPassword = formData.get('password');
+        const {data, error} = await supabase.auth.signInWithPassword({
+            email: getEmail,
+            password: getPassword,
+        })
     }
 
     //TODO: Logic for user authentication
@@ -48,7 +59,8 @@ export default function Login() {
                 }
             </div>
             <FormExtra />
-            <FormAction handleSubmit={handleSubmit} text="Login" type={undefined} action={undefined} />
+            <FormAction handleSubmit={handleSubmitAndAuthentication} text="Login" type={undefined} action={undefined} />
         </form>
+        //random
     )
 }

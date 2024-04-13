@@ -14,7 +14,7 @@ const [signInOrSignUpModalDisplayed, setsignInOrSignUpModalDisplayed] = useState
             heading="Login to your Account"
             paragraph="Don't have an account yet?"
             linkName="Signup"
-            linkUrl="#Signup"
+            linkUrl={signInOrSignUpModalDisplayed === 'signin' ? "#signup" : "#signin"}
             onToggleModalType={onToggleModal}
         />
         <Login />
