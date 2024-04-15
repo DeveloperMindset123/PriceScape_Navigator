@@ -4,8 +4,8 @@ import { signupFieldsConstants } from '@/constants/formFields';
 import FormAction from './FormAction';
 import Input from './Input';
 import { supabase } from '@/utils/supabase/client';
-
-//TOOD: Enable email provider login option in Supabase Project
+import { useRouter } from 'next/navigation';
+import Loading from "@/app/dashboard/Loading";
 
 const fields=signupFieldsConstants
 let fieldsState={}
@@ -13,6 +13,8 @@ fields.forEach(field=>fieldsState[field.id]='');
 
 const Signup = () => {
     const [signUpState, setSignUpState] = useState(fieldsState);
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const handleChange=(e)=>setSignUpState({...signUpState, [e.target.id]:e.target.value});
 
@@ -29,14 +31,18 @@ const Signup = () => {
             email: getEmail?.toString() || '',
             password: getPassword?.toString() || '',
             options: {
-                emailRedirectTo: 'https://example.com/welcome',
+                emailRedirectTo: '/dashboard',
             }
         })
         try {
             if (data) {
                 console.log("New User Created: ", data);
-            }
-        }
+                alert("User Created Successfully, check your email for verification!")
+                setTimeout(() => {
+                    setLoading(false);
+                    router.push('/dashboard');
+                }, 2000); // 2 seconds delay
+        }}
         catch (error) {
             console.log("Error Signing Up: ", error);
         }
