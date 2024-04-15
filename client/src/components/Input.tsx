@@ -20,7 +20,6 @@ const Input : React.FC<FixInputProps> = ({ handleChange, value, labelText, label
     <div className='my-5'>
         <label htmlFor={labelFor} className='sr-only'>{labelText}</label>
         <input 
-        
             onChange={handleChange}
             value={value}
             id={id}
