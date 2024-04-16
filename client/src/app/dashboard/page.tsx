@@ -3,7 +3,6 @@ import React from 'react';
 //import RootLayout from '../layout';
 //import 'client/src/app/globals.css'
 import Navbar from '@/components/Navbar';
-import Test from '@/components/test';
 import { LandingImage, secondImage, perfectImage } from '../../../public';
 import Image from 'next/image';
 

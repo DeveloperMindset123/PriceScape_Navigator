@@ -7,23 +7,16 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Logo, LogoSecondary, LogoTertiary } from "../../public/index";
 import Image from "next/image";
 
-//console.log(Logo);
-
-/**
- * Note: The top most div tag (as shown below)
- * <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black nav"> --> here, removing the fixed section from the className helped fixed the error of the text not rendering as it should undernath the navbar component
- * 
- * Purpose of fixed in tailwindcss: Use the fixed utility to positon an element relatitve to the browser window. Any offsets are calculated relative to the viewport and the element will act as a position reference absolutely positioned chldren.
- */
-
 const Navbar = () => {
     const [nav, setNav] = useState(false);
-    /*
-    const [color, setColor] = useState('transparent');
-    const [textColor, setTextColor] = useState('white'); */
+    const handleNavigation = (targetId) => {
+        const element = document.getElementById(targetId);
+        if (element) {
+            element.scrollIntoView({behavior: "smooth"});
+        }
+    }
 
-//replace them with actual links later
-    const links = [  //modify this as needed, we may not need them all to begin with, can be replaed with other information if needed
+    const links = [  
         {
             id: 1,
             name: "Home",
@@ -32,22 +25,17 @@ const Navbar = () => {
         {
             id: 2,
             name: "About",
-            link: "/#About"   //since we want to navigate to our ID aspect
+            link: "/#about"   
         },
         {
             id: 3,
             name: "Categories/Deals",
-            link: "/#Deals"  //this will be another section wihin the landing page that will be dropped down to
+            link: "/#Deals"  
         },
         {
             id: 4,
             name: "Top Products",
             link: "/#TopProducts"
-        },
-        {
-            id: 5,
-            name: "Register/Login",
-            link: "/"  //this should display a seperate popup screen for users to register/signup
         },
     ];
 
