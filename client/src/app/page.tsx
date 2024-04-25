@@ -53,6 +53,7 @@ const Landing = () => {
       <div id="about" style={{scrollBehavior: "smooth"}}className='data-twe-smooth-scroll-init scroll-smooth bg-gradient-to-r from-[#c8bdba] to-[#a49d9b] w-full min-h-screen mx-auto grid place-items-center'>
       <Slider />
       </div>
+      <div>
       <FormModal isVisibleBool={showModal} onClose={() => setShowModal(false)}>
       {activeModal === 'signin' ? (
         <SigninModal onToggleModal={toggleModal} />
@@ -60,6 +61,7 @@ const Landing = () => {
         <SignupModal onToggleModal={toggleModal} />
       )}
       </FormModal>
+      </div>
       <div id="TopProducts" className='min-height-1'>
       <TopProducts />
     </div>

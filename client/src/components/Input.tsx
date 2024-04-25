@@ -33,4 +33,4 @@ const Input : React.FC<FixInputProps> = ({ handleChange, value, labelText, label
   )
 }
 
-export default Input
+export default Input;

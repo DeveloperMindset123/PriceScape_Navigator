@@ -5,7 +5,7 @@ import FormAction from './FormAction';
 import Input from './Input';
 import { supabase } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
-import Loading from "@/app/dashboard/Loading";
+import Loading from "@/app/dashboard/loading";
 
 const fields=signupFieldsConstants
 let fieldsState={}

@@ -7,7 +7,8 @@ import FormExtra from "./FormExtra";
 import { PassThrough } from "stream";
 import { supabase } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
-import Loading from "@/app/dashboard/Loading";
+// Fix: Corrected the casing of the import statement below
+import Loading from "@/app/dashboard/loading"; 
 
 const fields = loginFieldsConstants;
 let fieldsState : any = {};
