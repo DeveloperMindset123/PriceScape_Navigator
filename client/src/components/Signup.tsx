@@ -3,10 +3,9 @@ import React, { useState } from 'react';
 import { signupFieldsConstants } from '@/constants/formFields';
 import FormAction from './FormAction';
 import Input from './Input';
-import { PassThrough } from 'stream';
-import { signup } from '@/app/login/action';
-
-//TOOD: Enable email provider login option in Supabase Project
+import { supabase } from '@/utils/supabase/client';
+import { useRouter } from 'next/navigation';
+import Loading from "@/app/dashboard/loading";
 
 const fields=signupFieldsConstants
 let fieldsState={}
@@ -14,6 +13,8 @@ fields.forEach(field=>fieldsState[field.id]='');
 
 const Signup = () => {
     const [signUpState, setSignUpState] = useState(fieldsState);
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const handleChange=(e)=>setSignUpState({...signUpState, [e.target.id]:e.target.value});
 
@@ -26,16 +27,28 @@ const Signup = () => {
         const getPassword = formData.get('password')
         console.log("Email", getEmail);
         console.log("Password", getPassword);
-        const { data, error } = await supabase.auth.signup({
-            email: getEmail,
-            password: getPassword,
+        const { data, error } = await supabase.auth.signUp({
+            email: getEmail?.toString() || '',
+            password: getPassword?.toString() || '',
             options: {
-                emailRedirectsTo: "/client/src/app/dashboard",
+                emailRedirectTo: '/dashboard',
             }
         })
+        try {
+            if (data) {
+                console.log("New User Created: ", data);
+                alert("User Created Successfully, check your email for verification!")
+                setTimeout(() => {
+                    setLoading(false);
+                    router.push('/dashboard');
+                }, 2000); // 2 seconds delay
+        }}
+        catch (error) {
+            console.log("Error Signing Up: ", error);
+        }
     }
   return (
-    <form className='mt-8 space-y-6' onSubmit={handleSubmit}>
+    <form className='mt-8 space-y-6' onSubmit={handleSubmitAndSignup}>
         <div className='px-20 pb-12'>
             {
                 fields.map(field=>

@@ -1,12 +1,14 @@
 "use client";
-
 import { useState } from "react";
 import { loginFieldsConstants } from "@/constants/formFields";
 import Input from "./Input";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import { PassThrough } from "stream";
-import { login } from "@/app/login/action";
+import { supabase } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
+// Fix: Corrected the casing of the import statement below
+import Loading from "@/app/dashboard/loading"; 
 
 const fields = loginFieldsConstants;
 let fieldsState : any = {};
@@ -14,31 +16,43 @@ fields.forEach(field=>fieldsState[field.id]="");
 
 export default function Login() {
     const [loginState,setLoginState]=useState(fieldsState);
+    const [loading, setLoading] = useState(false);
+
+    const router = useRouter();
     const handleChange=(e)=>{
         setLoginState({...loginState,[e.target.id]:e.target.value})
     } 
-    //import { supabase } from "@/app/supabase"; // Import the 'supabase' module
+
 
     async function handleSubmitAndAuthentication(e) {
         e.preventDefault();
-        handleAuthenticateUser();
+        setLoading(true);
         const formData = new FormData(e.currentTarget)
         //console.log(formData);
         const getEmail = formData.get('email');
         const getPassword = formData.get('password');
         const {data, error} = await supabase.auth.signInWithPassword({
-            email: getEmail,
-            password: getPassword,
+            email: getEmail?.toString() || '',
+            password: getPassword?.toString() || '',
+
         })
+        try {
+            if (data) {
+                console.log("User Logged In: ", data);
+                setTimeout(() => {
+                    setLoading(false);
+                    router.push('/dashboard');
+                }, 2000); // 2 seconds delay
+        }}
+        catch (error) {
+            console.log("Error logging in: ", error);
+        }
     }
 
-    //TODO: Logic for user authentication
-    const handleAuthenticateUser = () => {
-        PassThrough
-    }
 
     return (
-        <form className="mt-8 space-y-6 px-10 pb-12">
+        <form className="mt-8 space-y-6 px-10 pb-12" onSubmit={handleSubmitAndAuthentication}>
+            {loading && <Loading />}
             <div className="-space-y-px">
                 {
                     fields.map(field=>

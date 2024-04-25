@@ -6,6 +6,7 @@ import Slider from '@/components/Slider';
 import FormModal from '@/components/FormModal';
 import SigninModal from '@/components/SigninModal';
 import SignupModal from '@/components/SignupModal';
+import TopProducts from '@/components/TopProducts';
 
 
 const Landing = () => {
@@ -20,7 +21,7 @@ const Landing = () => {
   return (
     <>
     <Fragment>
-      <div className='relative overflow-hidden shadow-lg bg-cover bg-no-repeat p-12 text-center'
+      <div className='scroll-smooth md:scroll-auto relative overflow-hidden shadow-lg bg-cover bg-no-repeat p-12 text-center data-twe-smooth-scroll-init'
         style={{
           "backgroundImage": "url('https://t3.ftcdn.net/jpg/05/35/13/82/360_F_535138292_62ZnI4Hcw37J8Jaeg4E9TzJwUciCwSnp.jpg')",
           "height": "400px",
@@ -49,9 +50,10 @@ const Landing = () => {
         </div>
   
       </div>
-      <div className='bg-gradient-to-r from-[#c8bdba] to-[#a49d9b] w-full min-h-screen mx-auto grid place-items-center'>
+      <div id="about" style={{scrollBehavior: "smooth"}}className='data-twe-smooth-scroll-init scroll-smooth bg-gradient-to-r from-[#c8bdba] to-[#a49d9b] w-full min-h-screen mx-auto grid place-items-center'>
       <Slider />
       </div>
+      <div>
       <FormModal isVisibleBool={showModal} onClose={() => setShowModal(false)}>
       {activeModal === 'signin' ? (
         <SigninModal onToggleModal={toggleModal} />
@@ -59,6 +61,10 @@ const Landing = () => {
         <SignupModal onToggleModal={toggleModal} />
       )}
       </FormModal>
+      </div>
+      <div id="TopProducts" className='min-height-1'>
+      <TopProducts />
+    </div>
     </Fragment>
     </>
   )
