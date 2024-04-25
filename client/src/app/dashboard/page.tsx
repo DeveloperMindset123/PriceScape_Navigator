@@ -1,19 +1,15 @@
 "use client";
 import React from 'react';
-//import RootLayout from '../layout';
-//import 'client/src/app/globals.css'
-import { LandingImage, secondImage, perfectImage } from '../../../public';
-import Image from 'next/image';
 import SearchBar from '@/components/DashboardComponents/SearchBar';
-import ThemeSwitch from '@/components/themeSwitch';
+import Logout from '@/components/DashboardComponents/Logout';
 
 
 
 const Landing = () => {
   return (
     <>
-    <div className='m-8 flex flex-col justify-center max-w-lg '>
-      <SearchBar />
+    <div className='m-8 fixed top-20 right-2'>
+      <div><SearchBar /></div>
     </div>
     </>
   )

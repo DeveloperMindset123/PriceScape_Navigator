@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { productNames } from '@/lib/productData';
+import Logout from './Logout';
 
 
 const SearchBar = () => {
@@ -18,9 +19,10 @@ const SearchBar = () => {
         setActiveSearch(productNames.filter(w => w.includes(e.target.value)).slice(0,8));
     }
   return (
-    <form className='w-500 md: relative'>
+    <div className='flex'>
+    <form className='lg:w-[500px] md:w-[400px] sm:w-[400px] relative'>
         <div className="relative">
-            <input type='search' placeholder='Search Up a Product' className='w-full p-4 rounded-full bg-slate-600 text-white' onChange={(e) => handleSearch(e)}/>
+            <input type='search' placeholder='Search Product' className='w-full p-4 rounded-full bg-slate-600 text-white' onChange={(e) => handleSearch(e)}/>
                 <button className='absolute top-1/2 right-1 transform -translate-y-1/2 p-4 bg-slate-800 rounded-full'>
                     <AiOutlineSearch className='text-white'/>
                 </button>
@@ -41,6 +43,11 @@ const SearchBar = () => {
 
 
     </form>
+    <div className='ml-4'>
+        <Logout />
+    </div>
+
+    </div>
   )
 }
 
