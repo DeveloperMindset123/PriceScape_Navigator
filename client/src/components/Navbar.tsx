@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Logo, LogoSecondary, LogoTertiary } from "../../public/index";
 import Image from "next/image";
+import ThemeSwitch from "./themeSwitch";
 
 const Navbar = () => {
     const [nav, setNav] = useState(false);
@@ -79,6 +80,7 @@ const Navbar = () => {
                         ))}
                         </ul>
             )}
+            <div className="pr-12"><ThemeSwitch /></div>
         </div>
     );
 };

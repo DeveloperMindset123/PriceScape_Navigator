@@ -18,7 +18,7 @@ const SearchBar = () => {
         setActiveSearch(productNames.filter(w => w.includes(e.target.value)).slice(0,8));
     }
   return (
-    <form className='w-[500px] relative'>
+    <form className='w-500 md: relative'>
         <div className="relative">
             <input type='search' placeholder='Search Up a Product' className='w-full p-4 rounded-full bg-slate-600 text-white' onChange={(e) => handleSearch(e)}/>
                 <button className='absolute top-1/2 right-1 transform -translate-y-1/2 p-4 bg-slate-800 rounded-full'>

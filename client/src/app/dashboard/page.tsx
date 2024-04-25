@@ -5,14 +5,17 @@ import React from 'react';
 import { LandingImage, secondImage, perfectImage } from '../../../public';
 import Image from 'next/image';
 import SearchBar from '@/components/DashboardComponents/SearchBar';
+import ThemeSwitch from '@/components/themeSwitch';
 
 
 
 const Landing = () => {
   return (
-    <div className='m-8 flex flex-col justify-center max-w-lg'>
+    <>
+    <div className='m-8 flex flex-col justify-center max-w-lg '>
       <SearchBar />
     </div>
+    </>
   )
 }
 

@@ -16,5 +16,7 @@ const config: Config = {
     },
   },
   plugins: [],
+  //indicates that we are going to manually change between light and dark mode
+  darkMode: "class",
 };
 export default config;
