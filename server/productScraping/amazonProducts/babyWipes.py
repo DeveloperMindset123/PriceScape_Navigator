@@ -38,6 +38,10 @@ individual_product_link = baby_wipes_product_links[0].get('href')
 combined_individual_product_link = "https://amazon.com" + individual_product_link
 # print(combined_individual_product_link) # uncomment this to see if the individual link is posted properly and can be naviagted to the intended product --> tested and worked
 
+# now that we have the link to the individual product, we want to scrape the ifnormation from the specific product page
+individual_product_response = requests.get(url=combined_individual_product_link, headers=HEADERS)
+print(individual_product_response)
+
 
 
     
