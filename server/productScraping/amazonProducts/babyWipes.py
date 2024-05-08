@@ -26,7 +26,18 @@ beautiful_soup_response = BeautifulSoup(webpage.content, "html.parser")
 
 # Fetch links as list of tag objects--> replace the values of the class based on the values present within the anchor tag
 baby_wipes_product_links = beautiful_soup_response.find_all("a", attrs={'class' : 'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal'})
-print(baby_wipes_product_links)
+#print(baby_wipes_product_links)
+
+# retrieve the very first link of the list of links --> extract the specific href attribute's content
+#print(baby_wipes_product_links[0].get('href'))
+
+# save the link to a specific variable
+individual_product_link = baby_wipes_product_links[0].get('href')
+
+# this will allow us to get the entire link of the product
+combined_individual_product_link = "https://amazon.com" + individual_product_link
+# print(combined_individual_product_link) # uncomment this to see if the individual link is posted properly and can be naviagted to the intended product --> tested and worked
+
 
 
     
