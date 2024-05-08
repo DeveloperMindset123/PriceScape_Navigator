@@ -11,12 +11,18 @@ HEADERS = ({'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Appl
 # HTTP request
 webpage = requests.get(url=product_url_babyWipes, headers=HEADERS)
 
-if (wepage == 200):
-    print("Request Successful!", webpage)
-    print("Content of the webpage response is:")
-    print(webpage.content)
-else:
-    print("There was an error with your request", webpage)
+print("Request code:")
+print(webpage)
+''' --> uncomment this if you want to see the html content of the website
+print("\nHTML Content:")
+print(webpage.content)
+'''
+print("Type of data")
+print(type(webpage))
+
+# soup objects containing all the data
+beautiful_soup_response = BeautifulSoup(webpage.content, "html.parser")
+print(beautiful_soup_response)
     
 
 
