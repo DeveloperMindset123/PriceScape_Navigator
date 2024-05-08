@@ -22,7 +22,13 @@ print(type(webpage))
 
 # soup objects containing all the data
 beautiful_soup_response = BeautifulSoup(webpage.content, "html.parser")
-print(beautiful_soup_response)
+#print(beautiful_soup_response)
+
+# Fetch links as list of tag objects--> replace the values of the class based on the values present within the anchor tag
+baby_wipes_product_links = beautiful_soup_response.find_all("a", attrs={'class' : 'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal'})
+print(baby_wipes_product_links)
+
+
     
 
 
