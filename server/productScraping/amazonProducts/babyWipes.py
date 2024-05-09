@@ -60,7 +60,15 @@ individual_product_price = new_beautiful_soup_response.find("span", attrs={"clas
 
 # now we can retrieve the text element content --> note that due to the nested nature of the span element (refer to the previous print statement to see what the output looks like, we need to resort to calling on find more than once)
 individual_product_price_content = new_beautiful_soup_response.find("span", attrs={"class":"a-price a-text-price a-size-medium apexPriceToPay"}).find("span", attrs={"class":"a-offscreen"}).text
-print(individual_product_price_content)
+#print(individual_product_price_content) # --> tested and worked
+
+# now we can extract the product's ratings
+individual_product_rating_html = new_beautiful_soup_response.find("span", attrs={"class":"a-icon-alt"})
+#print(individual_product_rating_html) # --> uncomment the print statement to see how the resulting output looks like, tested and worked
+
+# we can also extract the specific content within the html if needed
+individual_product_rating_text=new_beautiful_soup_response.find("span", attrs={"class":"a-icon-alt"}).text.strip()
+#print(individual_product_rating_text) # --> tested and worked, able to successfully retrieve the information on the product
 
 
 
