@@ -97,14 +97,3 @@ if __name__ == "__main__":
     amazon_df = amazon_df.dropna(subset=['title'])
     amazon_df.to_json("./data/baby_wipes_data.json")
     amazon_df.to_csv("./data/baby_wipes_data.csv", header=True, index=False)
-        
-
-
-
-
-
-
-    
-
-
-
