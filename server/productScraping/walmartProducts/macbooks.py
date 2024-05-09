@@ -1,3 +1,4 @@
+''' --> This is old code
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd 
@@ -70,5 +71,28 @@ if __name__=="__main__":
     # convert to dataframe and save to csv
     walmart_df=pd.DataFrame(data=data)
     walmart_df.to_csv("./data/walmart_macbooks.csv", index=False)
+    '''
         
+'''The following implements scraping walmart product data using scrapy'''
+import json
+import math
+import scrapy
+from urllib.parse import urlencode
+
+class WalmartSpider(scrapy.Spider):
+    name="walmart"
+    custom_settings={
+        'FEEDS':{ 'data/%(name)s_%(time)s.csv' : { 'format': 'csv'}}
+    }
     
+    def start_requests(self):
+        keyword_list=['laptop']
+        for keyword in keyword_list:
+            payload={'q':keyword, 'sort':'best_seller', 'page':1, 'affinityOverride':'default'}
+            # take the payload (request body and convert it into corresponding urlencoding)
+            walmart_search_url="https://www.walmart.com/search?" + urlencode(payload)
+            yield scrapy.Request(url=walmart_search_url, callback=self.parse_search_results, meta={'keyword':keyword, 'page':1})
+            
+        
+            
+    #def 
