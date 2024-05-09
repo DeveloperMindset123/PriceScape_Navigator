@@ -40,7 +40,17 @@ combined_individual_product_link = "https://amazon.com" + individual_product_lin
 
 # now that we have the link to the individual product, we want to scrape the ifnormation from the specific product page
 individual_product_response = requests.get(url=combined_individual_product_link, headers=HEADERS)
-print(individual_product_response)
+#print(individual_product_response)
+
+# similar to before, use beautiful soup to parse and format the raw html code that has been obtained from the product page
+new_beautiful_soup_response = BeautifulSoup(individual_product_response.content, "html.parser")
+#print(new_beautiful_soup_response)
+
+# again, similar to before, target a specific html attribute
+individual_product_information = new_beautiful_soup_response.find("span", attrs={"id":"productTitle"})
+#print(individual_product_information) # --> uncomment this if you want to see the specific html anchor tag and the information within it --> tested and worked
+
+
 
 
 
