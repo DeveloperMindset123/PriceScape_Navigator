@@ -48,6 +48,10 @@ new_beautiful_soup_response = BeautifulSoup(individual_product_response.content,
 
 # again, similar to before, target a specific html attribute
 individual_product_information = new_beautiful_soup_response.find("span", attrs={"id":"productTitle"})
+
+# we can extract the content within the anchor tag using the following mechanism --> the strip() function helps remove the unneccessary whitespaces
+individual_product_information_content = new_beautiful_soup_response.find("span", attrs={"id":"productTitle"}).text.strip()
+print(individual_product_information_content)
 #print(individual_product_information) # --> uncomment this if you want to see the specific html anchor tag and the information within it --> tested and worked
 
 
