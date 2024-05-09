@@ -54,6 +54,9 @@ individual_product_information_content = new_beautiful_soup_response.find("span"
 print(individual_product_information_content)
 #print(individual_product_information) # --> uncomment this if you want to see the specific html anchor tag and the information within it --> tested and worked
 
+# Extract price of the individual product --> note that the content/value that corresponds to the class (for the title of the product it was id, but now it's class), the class values can be obtained from the html element within the webpage --> although the name of the titles and the content within the html tag varies, the html tag, their classes values in regards to defining css remains unchanged
+individual_product_price = new_beautiful_soup_response.find("span", attrs={"class":"a-price a-text-price a-size-medium apexPriceToPay"})
+print(individual_product_price)  # --> each print statement serves as a check to see if the product prices can be successfully obtained or not
 
 
 
