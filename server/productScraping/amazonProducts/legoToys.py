@@ -63,7 +63,7 @@ def get_full_url(base,link):
 
 if __name__ == "__main__":
     HEADERS=({'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15','Accept-Language':'en-US, en;q=0.5'})
-    URL="https://www.amazon.com/s?k=water+dispenser&crid=15SCGWZVFPAIS&sprefix=water+dispenser+%2Caps%2C105&ref=nb_sb_noss_2"
+    URL="https://www.amazon.com/s?k=lego+toys&crid=3V8QPB0NZ81GL&sprefix=lego+toys%2Caps%2C101&ref=nb_sb_noss_1"
     webpage=requests.get(url=URL, headers=HEADERS)
     soup = BeautifulSoup(webpage.content, "html.parser")
     links = soup.find_all("a", attrs={'class':'a-link-normal s-no-outline'})
@@ -95,8 +95,8 @@ if __name__ == "__main__":
     amazon_df=pd.DataFrame.from_dict(d)
     amazon_df['title'].replace('', np.nan, inplace=True)
     amazon_df = amazon_df.dropna(subset=['title'])
-    amazon_df.to_json("./data/water_filter_dispenser.json")
-    amazon_df.to_csv("./data/water_filter_dispenser.csv", header=True, index=False)
+    amazon_df.to_json("./data/lego_toys_data.json")
+    amazon_df.to_csv("./data/lego_toys_data.csv", header=True, index=False)
         
 
 
