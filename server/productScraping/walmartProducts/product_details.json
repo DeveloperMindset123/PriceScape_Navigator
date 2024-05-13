@@ -1,0 +1,10 @@
+[
+    {
+        "title": "macbook | Newegg.com",
+        "content": "```json\n[\n  {\n    \"Product name\": \"Refurbished Apple MacBook Pro MVVL2LL/A 16\\\"\",\n    \"Price\": \"$680.99\",\n    \"Ratings\": \"Top Rated Seller\",\n    \"Availability status\": \"Free Shipping\"\n  },\n  {\n    \"Product name\": \"Refurbished Apple 2023 MacBook Air Laptop with M2 chip: 15.3-inch Liquid Retina Display\",\n    \"Price\": \"$999.00\",\n    \"Ratings\": \"Top Rated Seller\",\n    \"Availability status\": \"Free Shipping\"\n  }\n]\n```"
+    },
+    {
+        "title": "macbook | Newegg.com",
+        "content": "```json\n[\n    {\n        \"Product name\": \"Refurbished Apple MacBook Pro MLH42LL/A 15.4\\\" 16GB 512GB SSD Core i7-6820HQ 2.7GHz macOS, Space Gray\",\n        \"Price\": \"$445.00\",\n        \"Rating\": \"Top Rated Seller\",\n        \"Availability\": \"Free Shipping\"\n    },\n    {\n        \"Product name\": \"Refurbished Apple MacBook Pro 13\\\" 2020 2.3 GHz Core i7 (I7-1068NG7) 32GB RAM 512 SSD Storage Iris Plus Graphics True Tone Display 2560x1600 A2251 MWP72LL/A\",\n        \"Price\": \"$740.00\",\n        \"Rating\": \"Top Rated Seller\",\n        \"Availability\": \"Free Shipping\"\n    },\n    {\n        \"Product name\": \"Refurbished Apple MacBook Pro 13\\\" 2022 (MNEH3LL/A) w/ TouchBar USB-C 67W Apple M2 3.49GHz 8GB/256GB - Space Gray | AZERTY/French\",\n        \"Price\": \"$929.00\",\n        \"Rating\": \"Top Rated Seller\",\n        \"Availability\": \"Free Shipping\"\n    }\n]\n```"
+    }
+]
