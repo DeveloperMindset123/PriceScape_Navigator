@@ -1,0 +1,6 @@
+[
+    {
+        "title": null,
+        "content": "```json\n{\n  \"1. The name of the product\": \"NO_OUTPUT\",\n  \"2. The price corresponding to each of the product\": \"NO_OUTPUT\",\n  \"3. The rating per product\": \"NO_OUTPUT\",\n  \"4. The availability of the product\": \"NO_OUTPUT\"\n}\n```"
+    }
+]
