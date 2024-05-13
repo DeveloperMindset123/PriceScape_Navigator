@@ -33,7 +33,7 @@ def web_qa(url_list, query):
         doc = text_splitter.split_documents(doc)
         documents.extend(doc)
 
-    # Use the VectorstoreIndexCreator to prepare for retrieval
+    # prepare for retrieval using Vanilla Vector Store
     retriever = FAISS.from_documents(documents, OpenAIEmbeddings()).as_retriever()
     
     # Use contextual compression to filter and extract relevant data
@@ -47,11 +47,8 @@ def web_qa(url_list, query):
     results = []
 
     for doc in compressed_docs:
-        # Process and collect the results
-        results.append({
-            "title": doc.metadata.get('title', 'No Title'),
-            "content": doc.page_content
-        })
+        content = json.loads(doc.page_content.replace('```json\n', '').replace('\n```', ''))  # Assuming the content is the JSON string correctly formatted
+        results.extend(content)  # Extend the results list with the list of product details
 
     # Save results to a JSON file for further processing or review
     with open('product_details.json', 'w') as f:
@@ -62,15 +59,13 @@ def web_qa(url_list, query):
 if __name__ == "__main__":
     url_list = ["https://www.newegg.com/p/pl?d=macbook"]
     prompt = """
-Extract data in JSON format for each product, including:
-- Product name
-- Price
-- Rating
-- Availability
-Please ensure to capture every product listed on the page.
-
-Additionally, ensure that each of the individual product is split into it's own json object containing Product Name, Price, Rating and Availabillity
-"""
-
-
+    Extract data in JSON format for each product, including:
+    - Product name
+    - Price
+    - Rating
+    - Availability
+    Please ensure to capture every product listed on the page.
+    Additionally, ensure that each of the individual product is split into it's own json object containing Product Name, Price, Rating and Availability.
+    """
+    
     web_qa(url_list, prompt)
