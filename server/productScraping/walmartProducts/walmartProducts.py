@@ -6,6 +6,8 @@ from langchain.retrievers import ContextualCompressionRetriever
 from langchain.retrievers.document_compressors import LLMChainExtractor
 from langchain.indexes import VectorstoreIndexCreator
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_text_splitters import CharacterTextSplitter
+from langchain_community.vectorstores import FAISS
 
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -16,15 +18,23 @@ openai = ChatOpenAI(model="gpt-4-turbo", openai_api_key=openai_api_key)
 def web_qa(url_list, query):
     embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
     llm_compressor = LLMChainExtractor.from_llm(openai)
+    # Example of adjusting the text splitter
+    text_splitter = CharacterTextSplitter(
+    chunk_size=2000,  # Adjust based on average length of product entries
+    chunk_overlap=300,
+    length_function=len,
+    is_separator_regex=False
+    )
 
     documents = []
     for url in url_list:
         loader = WebBaseLoader(url)
         doc = loader.load()
+        doc = text_splitter.split_documents(doc)
         documents.extend(doc)
 
     # Use the VectorstoreIndexCreator to prepare for retrieval
-    retriever = VectorstoreIndexCreator(embedding=embeddings).from_documents(documents).vectorstore.as_retriever()
+    retriever = FAISS.from_documents(documents, OpenAIEmbeddings()).as_retriever()
     
     # Use contextual compression to filter and extract relevant data
     compression_retriever = ContextualCompressionRetriever(
@@ -58,6 +68,8 @@ Extract data in JSON format for each product, including:
 - Rating
 - Availability
 Please ensure to capture every product listed on the page.
+
+Additionally, ensure that each of the individual product is split into it's own json object containing Product Name, Price, Rating and Availabillity
 """
 
 
