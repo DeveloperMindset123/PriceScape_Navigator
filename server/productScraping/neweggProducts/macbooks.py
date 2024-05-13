@@ -51,10 +51,10 @@ def web_qa(url_list, query):
         results.extend(content)  # Extend the results list with the list of product details
 
     # Save results to a JSON file for further processing or review
-    with open('product_details.json', 'w') as f:
+    with open('./data/newEgg_macbook_details.json', 'w') as f:
         json.dump(results, f, indent=4)
 
-    print("\nResults saved to 'product_details.json'.")
+    print("\nResults saved to 'newEgg_macbook_details.json'.")
 
 if __name__ == "__main__":
     url_list = ["https://www.newegg.com/p/pl?d=macbook"]
