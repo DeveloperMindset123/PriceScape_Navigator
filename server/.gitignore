@@ -1,2 +1,4 @@
 ayan-env/
 .env
+.DS_Store
+
