@@ -5,10 +5,10 @@ from dotenv import load_dotenv
 from langchain_community.document_loaders import WebBaseLoader # type: ignore
 from langchain.retrievers import ContextualCompressionRetriever # type: ignore
 from langchain.retrievers.document_compressors import LLMChainExtractor # type: ignore
-from langchain.indexes import VectorstoreIndexCreator
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_text_splitters import CharacterTextSplitter
-from langchain_community.vectorstores import FAISS
+from langchain.indexes import VectorstoreIndexCreator # type: ignore
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings # type: ignore
+from langchain_text_splitters import CharacterTextSplitter # type: ignore
+from langchain_community.vectorstores import FAISS # type: ignore
 
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
