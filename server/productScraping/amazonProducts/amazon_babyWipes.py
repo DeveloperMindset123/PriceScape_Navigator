@@ -63,7 +63,7 @@ def get_full_url(base,link):
 
 if __name__ == "__main__":
     HEADERS=({'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15','Accept-Language':'en-US, en;q=0.5'})
-    URL="https://www.amazon.com/s?k=apple+airpods&crid=62A3Y8QEX611&sprefix=apple+airpods%2Caps%2C102&ref=nb_sb_noss_1"
+    URL="https://www.amazon.com/s?k=baby+wipes&crid=S9G2H5COZ8YV&sprefix=baby+%2Caps%2C102&ref=nb_sb_ss_ts-doa-p_1_5"
     webpage=requests.get(url=URL, headers=HEADERS)
     soup = BeautifulSoup(webpage.content, "html.parser")
     links = soup.find_all("a", attrs={'class':'a-link-normal s-no-outline'})
@@ -95,16 +95,4 @@ if __name__ == "__main__":
     amazon_df=pd.DataFrame.from_dict(d)
     amazon_df['title'].replace('', np.nan, inplace=True)
     amazon_df = amazon_df.dropna(subset=['title'])
-    amazon_df.to_json("./data/apple_airpods_data.json")
-    amazon_df.to_csv("./data/apple_airpods_data.csv", header=True, index=False)
-        
-
-
-
-
-
-
-    
-
-
-
+    amazon_df.to_csv("./data/amazon_baby_wipes_data.csv", header=True, index=False)
