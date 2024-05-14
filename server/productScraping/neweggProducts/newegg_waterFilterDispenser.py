@@ -1,13 +1,14 @@
 import os
 import json
 from dotenv import load_dotenv
-from langchain_community.document_loaders import WebBaseLoader
-from langchain.retrievers import ContextualCompressionRetriever
-from langchain.retrievers.document_compressors import LLMChainExtractor
-from langchain.indexes import VectorstoreIndexCreator
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_text_splitters import CharacterTextSplitter
-from langchain_community.vectorstores import FAISS
+# TODO : Fix the issue regards to some imports not getting recognized despite being downloaded and added to requirements.txt --> type:ignore serves as a temporary placeholder
+from langchain_community.document_loaders import WebBaseLoader # type: ignore
+from langchain.retrievers import ContextualCompressionRetriever # type: ignore
+from langchain.retrievers.document_compressors import LLMChainExtractor # type: ignore
+from langchain.indexes import VectorstoreIndexCreator # type: ignore
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings # type: ignore
+from langchain_text_splitters import CharacterTextSplitter # type: ignore
+from langchain_community.vectorstores import FAISS # type: ignore
 
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -15,12 +16,12 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 # Initialize LLM
 openai = ChatOpenAI(model="gpt-4-turbo", openai_api_key=openai_api_key)
 
-def web_qa(url_list, query):
+def web_scraper(url_list, query):
     #embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key) --> default value, if you wish to pass in some other embedding model, feel free to do so
     llm_compressor = LLMChainExtractor.from_llm(openai)
     # Example of adjusting the text splitter
     text_splitter = CharacterTextSplitter(
-    chunk_size=2000,  # Adjust based on average length of product entries
+    chunk_size=2000,  
     chunk_overlap=300,
     length_function=len,
     is_separator_regex=False
@@ -31,11 +32,9 @@ def web_qa(url_list, query):
         loader = WebBaseLoader(url)
         doc = loader.load()
         doc = text_splitter.split_documents(doc)
-        print("\n\nAdding the following content obtained from WebBaseLoader:\n", doc)
         documents.extend(doc)
 
     retriever = FAISS.from_documents(documents, OpenAIEmbeddings()).as_retriever()
-    print("The following information has been stored within the Vector Database:")
     print(retriever)
     
     compression_retriever = ContextualCompressionRetriever(
@@ -49,8 +48,6 @@ def web_qa(url_list, query):
     for doc in compressed_docs:
         content = json.loads(doc.page_content.replace('```json\n', '').replace('\n```', '')) 
         results.extend(content)  
-    print("Data Gathered: ")
-    print(results)
     
     with open('./data/newEgg_waterFilterDispenser_details.json', 'w') as f:
         json.dump(results, f, indent=4)
@@ -69,4 +66,4 @@ if __name__ == "__main__":
     Additionally, ensure that each of the individual product is split into it's own json object containing Product Name, Price, Rating and Availability.
     """
     
-    web_qa(url_list, prompt)
+    web_scraper(url_list, prompt)

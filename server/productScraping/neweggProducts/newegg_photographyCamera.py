@@ -1,9 +1,10 @@
 import os
 import json
 from dotenv import load_dotenv
-from langchain_community.document_loaders import WebBaseLoader
-from langchain.retrievers import ContextualCompressionRetriever
-from langchain.retrievers.document_compressors import LLMChainExtractor
+# TODO : Fix the issue regards to some imports not getting recognized despite being downloaded and added to requirements.txt --> type:ignore serves as a temporary placeholder
+from langchain_community.document_loaders import WebBaseLoader # type: ignore
+from langchain.retrievers import ContextualCompressionRetriever # type: ignore
+from langchain.retrievers.document_compressors import LLMChainExtractor # type: ignore
 from langchain.indexes import VectorstoreIndexCreator
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_text_splitters import CharacterTextSplitter
@@ -16,7 +17,7 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 openai = ChatOpenAI(model="gpt-4-turbo", openai_api_key=openai_api_key)
 
 def web_qa(url_list, query):
-    embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
+    #embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
     llm_compressor = LLMChainExtractor.from_llm(openai)
     # Example of adjusting the text splitter
     text_splitter = CharacterTextSplitter(
