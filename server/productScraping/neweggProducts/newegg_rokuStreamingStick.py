@@ -49,7 +49,9 @@ def web_qa(url_list, query):
     for doc in compressed_docs:
         content = json.loads(doc.page_content.replace('```json\n', '').replace('\n```', ''))  # Assuming the content is the JSON string correctly formatted
         results.extend(content)  # Extend the results list with the list of product details
-
+    print("Data Gathered: ")
+    print(results)
+    
     # Save results to a JSON file for further processing or review
     with open('./data/newEgg_rokuStreaming_details.json', 'w') as f:
         json.dump(results, f, indent=4)
