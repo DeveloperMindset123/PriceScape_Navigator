@@ -95,5 +95,4 @@ if __name__ == "__main__":
     amazon_df=pd.DataFrame.from_dict(d)
     amazon_df['title'].replace('', np.nan, inplace=True)
     amazon_df = amazon_df.dropna(subset=['title'])
-    amazon_df.to_json("./data/portable_charger_data.json")
-    amazon_df.to_csv("./data/portable_charger_data.csv", header=True, index=False)
+    amazon_df.to_csv("./data/amazon_portable_charger_data.csv", header=True, index=False)
