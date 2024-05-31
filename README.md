@@ -12,4 +12,4 @@
 - [x] <b>Responsive Web Design</b>: Ensure that the application is usable across various devices, especially on mobile and tablets.
 - [ ] <b>User accounts and personalizations</b>: Add the abillity for users to create accounts, save their favorite products, set price alerts, and recieve personalized recommendations.
 
-Development to be continued, in progress.
+Development to be continued, in progress, will start next week.
